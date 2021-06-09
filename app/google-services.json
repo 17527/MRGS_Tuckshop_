@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "828422226144",
+    "project_id": "tuckshop-app",
+    "storage_bucket": "tuckshop-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828422226144:android:06d0ecabbb4a60fa259085",
+        "android_client_info": {
+          "package_name": "com.example.mrgstuckshopapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "828422226144-ttb9tdfakplrugq8fd4spff2ft1ctsd8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6CLho_9j0NPBb3BM_O7yAIlUjvnZ6VQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "828422226144-ttb9tdfakplrugq8fd4spff2ft1ctsd8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
