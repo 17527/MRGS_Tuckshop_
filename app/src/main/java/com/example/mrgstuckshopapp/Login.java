@@ -35,6 +35,7 @@ public class Login extends AppCompatActivity {
     FirebaseAuth fAuth;
     AlertDialog.Builder reset_alert;
     LayoutInflater inflater;
+    String userID;
 
 
 
@@ -52,7 +53,10 @@ public class Login extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         btnForgot = findViewById(R.id.forgotPassword);
 
+
         inflater = this.getLayoutInflater();
+
+
 
 
         reset_alert = new AlertDialog.Builder(this);
@@ -130,7 +134,14 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(Login.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            userID = fAuth.getCurrentUser().getUid();
+                            final FirebaseUser user = fAuth.getCurrentUser();
+                            if (!user.isEmailVerified()) {
+                                startActivity(new Intent(getApplicationContext(), verify.class));
+                            }
+                            else {
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }
                         }
 
                         else{

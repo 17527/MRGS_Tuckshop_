@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 public class SplashScreen extends AppCompatActivity {
 
     private static int SPLASH_SCREEN = 5000;

@@ -18,9 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Register extends AppCompatActivity {
     EditText rEmail, rStudID, rPassword;
@@ -30,6 +34,8 @@ public class Register extends AppCompatActivity {
     ProgressBar rProgressBar;
     TextView rCreate;
 
+    private static final String TAG = "Register";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +43,19 @@ public class Register extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_register);
 
+
         rEmail = findViewById(R.id.r_email);
         rStudID = findViewById(R.id.stud_id);
         rPassword = findViewById(R.id.r_password);
         btnRegister = findViewById(R.id.btn_register);
         rLogo = findViewById(R.id.big_logo);
         rCreate = findViewById(R.id.log_in);
-
         fAuth = FirebaseAuth.getInstance();
         rProgressBar = findViewById(R.id.r_progressbar);
+
+
+
+
 
         if(fAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -95,8 +105,23 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+
+                            FirebaseUser user = fAuth.getCurrentUser();
+                            user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(Register.this,"Verification link has been sent to the email", Toast.LENGTH_SHORT).show();
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG, "onFailure: Email not sent" + e.getMessage());
+
+                                }
+                            });
                             Toast.makeText(Register.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), verify.class));
                             finish();
                         }
 
