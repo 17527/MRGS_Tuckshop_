@@ -70,6 +70,8 @@ public class Register extends AppCompatActivity {
                 String password = rPassword.getText() .toString() .trim();
                 String stud_id = rStudID.getText() .toString() .trim();
 
+
+
                 //the conditions
 
                 if(TextUtils.isEmpty(stud_id)){
