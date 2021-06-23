@@ -27,7 +27,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-     Button settings;
      DrawerLayout drawerLayout;
      NavigationView navigationView;
      Toolbar toolbar;
@@ -60,14 +59,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        settings = findViewById(R.id.btn_settings);
 
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Settings.class));
-            }
-        });
+
+
 
 
 

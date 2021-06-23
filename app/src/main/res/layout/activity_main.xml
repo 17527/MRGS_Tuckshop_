@@ -29,54 +29,11 @@
             android:layout_height="match_parent"
             tools:context=".MainActivity">
 
-            <TextView
-                android:id="@+id/verifymsg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/modern_sans_font"
-                android:text="EMAIL NOT VERIFIED!"
-                android:textAlignment="center"
-                android:textColor="#d10202"
-                android:textSize="25dp"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@+id/btn_settings"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.207" />
 
-            <Button
-                android:id="@+id/btn_verify"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_btn"
-                android:text="Verify now"
-                android:textColor="#081A75"
-                android:textSize="20dp"
-                android:visibility="invisible"
-                app:iconTint="#BB8800"
-                app:layout_constraintBottom_toTopOf="@+id/btn_settings"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.468" />
 
-            <Button
-                android:id="@+id/btn_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="228dp"
-                android:background="@drawable/round_btn"
-                android:text="Settings"
-                android:textColor="#081A75"
-                android:textSize="20dp"
-                app:iconTint="#BB8800"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+
+
+
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
