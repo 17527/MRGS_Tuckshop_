@@ -43,7 +43,7 @@ public class FoodAdaptor extends RecyclerView.Adapter<FoodAdaptor.FoodListHolder
     }
 
     public void setFoodModelList(List<FoodModel> FoodModelList){
-        this.foodModelList = foodModelList;
+        this.foodModelList = FoodModelList;
     }
 
     class FoodListHolder extends RecyclerView.ViewHolder {
