@@ -2,7 +2,6 @@ package com.example.mrgstuckshopapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,7 +44,7 @@ public class verify extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (user.isEmailVerified()) {
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), nav_drawer.class));
                     } else {
                         user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -65,7 +64,7 @@ public class verify extends AppCompatActivity {
             });
         }
         else{
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), nav_drawer.class));
             finish();
         }
 

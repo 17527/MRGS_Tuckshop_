@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph"
+    app:startDestination="@id/foodlistfragment"
+    >
+
+    <fragment
+        android:id="@+id/foodlistfragment"
+        android:name="com.example.mrgstuckshopapp.foodlistfragment"
+        android:label="foodlistfragment"
+        tools:layout="@layout/fragment_foodlistfragment">
+        <action
+            android:id="@+id/action_foodlistfragment_to_foodDescriptionFragment"
+            app:destination="@id/foodDescriptionFragment" />
+        <action
+            android:id="@+id/action_foodlistfragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/foodDescriptionFragment"
+        android:name="com.example.mrgstuckshopapp.FoodDescriptionFragment"
+        android:label="fragment_food_desrciption"
+        tools:layout="@layout/fragment_food_desrciption" >
+        <action
+            android:id="@+id/action_foodDescriptionFragment_to_foodlistfragment"
+            app:destination="@id/foodlistfragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.mrgstuckshopapp.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_foodlistfragment"
+            app:destination="@id/foodlistfragment" />
+    </fragment>
+</navigation>

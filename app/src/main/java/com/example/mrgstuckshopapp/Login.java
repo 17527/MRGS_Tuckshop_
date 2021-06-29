@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -140,7 +139,7 @@ public class Login extends AppCompatActivity {
                                 startActivity(new Intent(getApplicationContext(), verify.class));
                             }
                             else {
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                startActivity(new Intent(getApplicationContext(), nav_drawer.class));
                             }
                         }
 

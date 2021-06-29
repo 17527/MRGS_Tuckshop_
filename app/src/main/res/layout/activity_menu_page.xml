@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MenuPage">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="menu"
+        tools:layout_editor_absoluteX="189dp"
+        tools:layout_editor_absoluteY="326dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
