@@ -45,7 +45,7 @@ public class Verify extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (user.isEmailVerified()) {
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), OrderPage.class));
                     } else {
                         user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -65,7 +65,7 @@ public class Verify extends AppCompatActivity {
             });
         }
         else{
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), OrderPage.class));
             finish();
         }
 

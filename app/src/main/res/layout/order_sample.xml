@@ -54,7 +54,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="1dp"
-                        android:text="TextView"
+                        android:text="Order Number: "
                         android:textColor="#33385E"
                         tools:text="Order Number" />
 
@@ -90,7 +90,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/orderPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3"

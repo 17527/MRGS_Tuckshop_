@@ -2,10 +2,15 @@ package com.example.mrgstuckshopapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.example.mrgstuckshopapp.Models.CartModel;
+
+import java.util.ArrayList;
 
 public class DbHelper extends SQLiteOpenHelper {
 
@@ -60,5 +65,26 @@ public class DbHelper extends SQLiteOpenHelper {
             return true;
         }
 
+    }
+
+    //modelling the ordered data from the database
+    public ArrayList<CartModel> getOrders() {
+        ArrayList<CartModel> orders = new ArrayList<>();
+        SQLiteDatabase database = this.getWritableDatabase();
+        //cursor is used to get rows from data base so it can be inserted into the cart
+        Cursor cursor = database.rawQuery("Select id, foodname,image,price from orders", null );
+        if(cursor.moveToFirst()){
+            while(cursor.moveToNext()){
+                CartModel model = new CartModel();
+                model.setOrderNumber(cursor.getInt(0)+"");
+                model.setSoldItemName(cursor.getString(1));
+                model.setOrderImage(cursor.getInt(2));
+                model.setPrice(cursor.getInt(3)+"");
+                orders.add(model);
+            }
+        }
+        cursor.close();
+        database.close();
+        return orders;
     }
 }

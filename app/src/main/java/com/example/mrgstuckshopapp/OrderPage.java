@@ -1,10 +1,14 @@
 package com.example.mrgstuckshopapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import com.example.mrgstuckshopapp.Adapters.OrderAdapter;
@@ -14,7 +18,6 @@ import com.example.mrgstuckshopapp.databinding.ActivityOrderPageBinding;
 import java.util.ArrayList;
 
 public class OrderPage extends AppCompatActivity {
-    Toolbar toolbar;
     ActivityOrderPageBinding binding;
 
 
@@ -22,10 +25,8 @@ public class OrderPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        toolbar = findViewById(R.id.toolbar);
         binding = ActivityOrderPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setSupportActionBar(toolbar);
 
         ArrayList<OrderModel> list = new ArrayList<>();
 
@@ -41,5 +42,21 @@ public class OrderPage extends AppCompatActivity {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.recyclerview.setLayoutManager(layoutManager);
+    }
+//inflates the menu.xml file and puts it as menubar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.orders:
+                startActivity(new Intent(OrderPage.this, CartActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

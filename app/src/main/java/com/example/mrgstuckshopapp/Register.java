@@ -57,7 +57,7 @@ public class Register extends AppCompatActivity {
 
 
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), OrderPage.class));
             finish();
         }
 

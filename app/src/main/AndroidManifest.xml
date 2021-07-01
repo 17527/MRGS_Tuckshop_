@@ -14,14 +14,9 @@
         android:theme="@style/Theme.MRGSTuckshopApp">
         <activity android:name=".Detail"></activity>
         <activity android:name=".CartActivity" />
-        <activity android:name=".ContactPage" />
-        <activity android:name=".AboutPage" />
-        <activity android:name=".MenuPage" />
-        <activity android:name=".PastOrder" />
         <activity android:name=".OrderPage" />
         <activity android:name=".Verify" />
         <activity android:name=".Settings" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen">

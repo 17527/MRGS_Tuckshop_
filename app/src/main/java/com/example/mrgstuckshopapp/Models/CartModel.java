@@ -1,15 +1,19 @@
 package com.example.mrgstuckshopapp.Models;
 
-public class ModelforOrder {
+public class CartModel {
 
     int orderImage;
     String soldItemName, price, orderNumber;
 
-    public ModelforOrder(int orderImage, String soldItemName, String price, String orderNumber) {
+    public CartModel(int orderImage, String soldItemName, String price, String orderNumber) {
         this.orderImage = orderImage;
         this.soldItemName = soldItemName;
         this.price = price;
         this.orderNumber = orderNumber;
+    }
+
+    public CartModel() {
+
     }
 
     public int getOrderImage() {

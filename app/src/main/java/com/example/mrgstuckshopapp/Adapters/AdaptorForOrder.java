@@ -10,17 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mrgstuckshopapp.Models.ModelforOrder;
+import com.example.mrgstuckshopapp.Models.CartModel;
 import com.example.mrgstuckshopapp.R;
 
 import java.util.ArrayList;
 
 public class AdaptorForOrder extends RecyclerView.Adapter<AdaptorForOrder.viewholder>{
 
-    ArrayList<ModelforOrder> list;
+    ArrayList<CartModel> list;
         Context context;
 
-    public AdaptorForOrder(ArrayList<ModelforOrder> list, Context context) {
+    public AdaptorForOrder(ArrayList<CartModel> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -35,7 +35,7 @@ public class AdaptorForOrder extends RecyclerView.Adapter<AdaptorForOrder.viewho
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
 
-        final ModelforOrder model = list.get(position);
+        final CartModel model = list.get(position);
         holder.orderImage.setImageResource(model.getOrderImage());
         holder.soldItemName.setText(model.getSoldItemName());
         holder.orderNumer.setText(model.getOrderNumber());
