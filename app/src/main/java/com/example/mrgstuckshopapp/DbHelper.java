@@ -49,6 +49,19 @@ public class DbHelper extends SQLiteOpenHelper {
     public boolean insertOrder(String name, String phone, int price, int image, String foodname, String desc, int quantity){
         SQLiteDatabase database = getReadableDatabase();
         ContentValues values = new ContentValues();
+
+        /*
+        * Indexes
+        * id = 0
+        * name =1
+        * phone = 2
+        * price = 3
+        * image = 4
+        * quantity = 5
+        * foodname = 6
+        * desc = 7
+        *
+        * */
         values.put("name", name);
         values.put("phone", phone);
         values.put("price", price);
@@ -86,5 +99,57 @@ public class DbHelper extends SQLiteOpenHelper {
         cursor.close();
         database.close();
         return orders;
+    }
+
+    //getting the information for detail activity for updating
+    public Cursor getOrderById(int id){
+        SQLiteDatabase database = this.getWritableDatabase();
+        //cursor is used to get rows from data base so it can be inserted
+        Cursor cursor = database.rawQuery("Select * from orders where id =" + id, null );
+
+        if(cursor != null)
+            cursor.moveToFirst();
+
+        return cursor;
+    }
+
+    public boolean updateOrder(String name, String phone, int price, int image, String foodname, String desc,
+                               int quantity, int id){
+        SQLiteDatabase database = getReadableDatabase();
+        ContentValues values = new ContentValues();
+
+        /*
+         * Indexes
+         * id = 0
+         * name =1
+         * phone = 2
+         * price = 3
+         * image = 4
+         * quantity = 5
+         * foodname = 6
+         * desc = 7
+         *
+         * */
+        values.put("name", name);
+        values.put("phone", phone);
+        values.put("price", price);
+        values.put("image", image);
+        values.put("quantity", quantity);
+        values.put("foodname", foodname);
+        values.put("description", desc);
+
+        //prevents the id created to be less than 0
+        long row = database.update("orders", values, "id="+id, null);
+        if(row <= 0) {
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
+    public int deletedOrder(String id){
+        SQLiteDatabase database = this.getWritableDatabase();
+        return database.delete("orders", "id=" +id, null);
     }
 }

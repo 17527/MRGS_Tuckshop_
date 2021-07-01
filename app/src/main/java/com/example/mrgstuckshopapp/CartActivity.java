@@ -5,11 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 
-import com.example.mrgstuckshopapp.Adapters.AdaptorForOrder;
+import com.example.mrgstuckshopapp.Adapters.CartAdaptor;
 import com.example.mrgstuckshopapp.Models.CartModel;
 import com.example.mrgstuckshopapp.databinding.ActivityCartBinding;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CartActivity extends AppCompatActivity {
@@ -28,7 +27,7 @@ public class CartActivity extends AppCompatActivity {
             DbHelper helper = new DbHelper(CartActivity.this);
             ArrayList<CartModel> list = helper.getOrders();
 
-        AdaptorForOrder adapter = new AdaptorForOrder(list, this);
+        CartAdaptor adapter = new CartAdaptor(list, this);
         binding.orderrecyclerview.setAdapter(adapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

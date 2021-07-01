@@ -44,7 +44,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.viewholder>{
         holder.description.setText(model.getDescription());
 
         holder.itemView.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, Detail.class);
@@ -52,6 +51,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.viewholder>{
                 intent.putExtra("price", model.getPrice());
                 intent.putExtra("desc", model.getDescription());
                 intent.putExtra("name", model.getName());
+                intent.putExtra("type", 1);
                 context.startActivity(intent);
 
             }
