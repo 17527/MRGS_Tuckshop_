@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,12 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MRGSTuckshopApp">
-        <activity android:name=".ContactPage"></activity>
+        <activity android:name=".Detail"></activity>
+        <activity android:name=".CartActivity" />
+        <activity android:name=".ContactPage" />
         <activity android:name=".AboutPage" />
         <activity android:name=".MenuPage" />
         <activity android:name=".PastOrder" />
         <activity android:name=".OrderPage" />
-        <activity android:name=".verify" />
+        <activity android:name=".Verify" />
         <activity android:name=".Settings" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Register" />

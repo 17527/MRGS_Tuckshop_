@@ -18,7 +18,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class verify extends AppCompatActivity {
+public class Verify extends AppCompatActivity {
     Button ResendCode;
     String userID;
     FirebaseAuth fAuth;
