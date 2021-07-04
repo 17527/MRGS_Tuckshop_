@@ -20,6 +20,11 @@ public class FoodAdaptor extends RecyclerView.Adapter<FoodAdaptor.FoodListHolder
 
     List<FoodModel> foodModelList;
 
+    GetOneFood interfacegetFood;
+
+    public FoodAdaptor(GetOneFood interfacegetFood) {
+        this.interfacegetFood = interfacegetFood;
+    }
 
     @Override
     public FoodListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -42,11 +47,13 @@ public class FoodAdaptor extends RecyclerView.Adapter<FoodAdaptor.FoodListHolder
         return foodModelList.size();
     }
 
+
+// sets the food list from the foodview model
     public void setFoodModelList(List<FoodModel> FoodModelList){
         this.foodModelList = FoodModelList;
     }
 
-    class FoodListHolder extends RecyclerView.ViewHolder {
+    class FoodListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView foodname, description;
         ImageView imageView;
@@ -58,6 +65,23 @@ public class FoodAdaptor extends RecyclerView.Adapter<FoodAdaptor.FoodListHolder
             foodname = itemView.findViewById(R.id.foodname);
             description = itemView.findViewById(R.id.fooddescription);
             imageView = itemView.findViewById(R.id.foodimage);
+
+            foodname.setOnClickListener(this);
+            description.setOnClickListener(this);
+            imageView.setOnClickListener(this);
         }
+
+
+        // the method that is implemented when user clicks on food
+
+        @Override
+        public void onClick(View v) {
+            interfacegetFood.clickedFood(getAdapterPosition(), foodModelList);
+        }
+    }
+
+    public interface GetOneFood{
+        void clickedFood(int position, List<FoodModel> foodModels);
+
     }
 }

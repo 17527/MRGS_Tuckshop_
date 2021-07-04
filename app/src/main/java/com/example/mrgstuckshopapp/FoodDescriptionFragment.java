@@ -4,54 +4,36 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FoodDescriptionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.bumptech.glide.Glide;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+
 public class FoodDescriptionFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    NavController navController;
+    int quantity = 0;
+    FirebaseFirestore firebaseFirestore;
+    Button add, sub, order;
+    TextView foodname, description, quantityview, orderINFO;
+    ImageView imageView;
+    String foodid;
+    String name;
+    String fooddescription;
+    String imageURL;
+    int price = 0;
+    int totalPrice = 0;
 
     public FoodDescriptionFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FoodDesrciptionFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FoodDescriptionFragment newInstance(String param1, String param2) {
-        FoodDescriptionFragment fragment = new FoodDescriptionFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -59,5 +41,81 @@ public class FoodDescriptionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_food_desrciption, container, false);
+    }
+
+    //setting the values
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        imageView = view.findViewById(R.id.fooddetailimage);
+        foodname = view.findViewById(R.id.fooddetailname);
+        description = view.findViewById(R.id.fooddetaildetail);
+        add = view.findViewById(R.id.upquantity);
+        sub = view.findViewById(R.id.downquantity);
+        quantityview = view.findViewById(R.id.fooddetailquantity);
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        navController = Navigation.findNavController(view);
+        order = view.findViewById(R.id.addtocartorderdetail);
+        orderINFO = view.findViewById(R.id.orderINFO);
+
+        name = FoodDescriptionFragmentArgs.fromBundle(getArguments()).getFoodname();
+        foodid = FoodDescriptionFragmentArgs.fromBundle(getArguments()).getId();
+        imageURL = FoodDescriptionFragmentArgs.fromBundle(getArguments()).getImageURL();
+        price = FoodDescriptionFragmentArgs.fromBundle(getArguments()).getPrice();
+        fooddescription = FoodDescriptionFragmentArgs.fromBundle(getArguments()).getDescription();
+        foodid = FoodDescriptionFragmentArgs.fromBundle(getArguments()).getId();
+
+        Glide.with(view.getContext()).load(imageURL).into(imageView);
+        foodname.setText(name + "$ " + String.valueOf(price));
+        description.setText(fooddescription);
+
+// add button increases the quantity
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (quantity == 10){
+                    Toast.makeText(getContext(), "Nothing in Cart", Toast.LENGTH_SHORT).show();
+                    quantityview.setText(String.valueOf(quantity));
+
+                }else{
+
+                    quantity++;
+                    quantityview.setText(String.valueOf(quantity));
+
+                    //showing the price
+                    totalPrice = quantity*price;
+                    orderINFO.setText(String.valueOf("$ " + totalPrice));
+
+                }
+
+
+            }
+        });
+        // sub button decreases the quantity
+        sub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (quantity == 0){
+                    Toast.makeText(getContext(), "Nothing in Cart", Toast.LENGTH_SHORT).show();
+                    quantityview.setText(String.valueOf(quantity));
+
+                }else{
+
+                    quantity--;
+                    quantityview.setText(String.valueOf(quantity));
+
+                    //showing the price
+                    totalPrice = quantity*price;
+                    orderINFO.setText(String.valueOf("$ " + totalPrice));
+
+                }
+
+
+            }
+        });
+
     }
 }

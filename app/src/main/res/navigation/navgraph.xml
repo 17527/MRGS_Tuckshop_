@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/foodlistfragment"
-        android:name="com.example.mrgstuckshopapp.foodlistfragment"
+        android:name="com.example.mrgstuckshopapp.Foodlistfragment"
         android:label="foodlistfragment"
         tools:layout="@layout/fragment_foodlistfragment">
         <action
@@ -17,6 +17,7 @@
         <action
             android:id="@+id/action_foodlistfragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/foodDescriptionFragment"
@@ -26,6 +27,26 @@
         <action
             android:id="@+id/action_foodDescriptionFragment_to_foodlistfragment"
             app:destination="@id/foodlistfragment" />
+        <argument
+            android:name="foodname"
+            app:argType="string"
+            android:defaultValue="null" />
+        <argument
+            android:name="description"
+            app:argType="string"
+            android:defaultValue="null" />
+        <argument
+            android:name="imageURL"
+            app:argType="string"
+            android:defaultValue="null" />
+        <argument
+            android:name="price"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue="null" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"

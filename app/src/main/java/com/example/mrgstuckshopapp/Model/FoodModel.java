@@ -6,17 +6,18 @@ import com.google.firebase.firestore.DocumentId;
 public class FoodModel {
 
     @DocumentId
-    String foodid;
-    String description, imageURL, foodname;
-    int price;
+    private String foodid;
+    private String description, imageURL, foodname;
+    private int price;
 
-    public FoodModel(String foodid, String description, String imageURL, String foodname, int price) {
+    public FoodModel() {
         this.foodid = foodid;
         this.description = description;
         this.imageURL = imageURL;
         this.foodname = foodname;
         this.price = price;
     }
+
 
     public String getFoodid() {
         return foodid;
@@ -65,7 +66,6 @@ public class FoodModel {
                 ", description='" + description + '\'' +
                 ", imageURL='" + imageURL + '\'' +
                 ", foodname='" + foodname + '\'' +
-                ", price=" + price +
-                '}';
+                ", price=" + price + '}';
     }
 }
