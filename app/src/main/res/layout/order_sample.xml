@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="6dp"
-        android:layout_marginTop="6dp"
         android:layout_marginRight="6dp"
         app:cardCornerRadius="4dp"
         app:cardElevation="4dp">
@@ -39,10 +38,11 @@
                     android:id="@+id/orderItemName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Garlic Bread"
                     android:fontFamily="@font/modern_sans_font"
-
                     android:textColor="#081A75"
+                    android:text="Garlic Bread"
+
+
                     android:textSize="18dp" />
 
                 <LinearLayout
