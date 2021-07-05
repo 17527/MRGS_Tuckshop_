@@ -14,7 +14,13 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
+import com.example.mrgstuckshopapp.Model.FoodModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 
 public class FoodDescriptionFragment extends Fragment {
@@ -70,6 +76,17 @@ public class FoodDescriptionFragment extends Fragment {
         foodname.setText(name + "$ " + String.valueOf(price));
         description.setText(fooddescription);
 
+        //fetching the recent quantity from firestore and displaying it
+        firebaseFirestore.collection("Food").document(foodid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(DocumentSnapshot value, FirebaseFirestoreException error) {
+
+                FoodModel foodModel = value.toObject(FoodModel.class);
+                quantity = foodModel.getQuantity();
+                quantityview.setText(String.valueOf(quantity));
+            }
+        });
+
 // add button increases the quantity
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +104,14 @@ public class FoodDescriptionFragment extends Fragment {
                     //showing the price
                     totalPrice = quantity*price;
                     orderINFO.setText(String.valueOf("$ " + totalPrice));
+
+                    //updating the quantity on firebase
+                    firebaseFirestore.collection("Food").document(foodid).update("quantity", quantity).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(Task<Void> task) {
+
+                        }
+                    });
 
                 }
 
@@ -110,6 +135,14 @@ public class FoodDescriptionFragment extends Fragment {
                     //showing the price
                     totalPrice = quantity*price;
                     orderINFO.setText(String.valueOf("$ " + totalPrice));
+
+                    //updating quantity in firebase
+                    firebaseFirestore.collection("Food").document(foodid).update("quantity", quantity).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(Task<Void> task) {
+
+                        }
+                    });
 
                 }
 

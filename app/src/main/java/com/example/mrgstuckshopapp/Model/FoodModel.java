@@ -8,7 +8,7 @@ public class FoodModel {
     @DocumentId
     private String foodid;
     private String description, imageURL, foodname;
-    private int price;
+    private int price, quantity;
 
     public FoodModel() {
         this.foodid = foodid;
@@ -16,6 +16,7 @@ public class FoodModel {
         this.imageURL = imageURL;
         this.foodname = foodname;
         this.price = price;
+        this.quantity = quantity;
     }
 
 
@@ -59,13 +60,11 @@ public class FoodModel {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "FoodModel{" +
-                "foodid='" + foodid + '\'' +
-                ", description='" + description + '\'' +
-                ", imageURL='" + imageURL + '\'' +
-                ", foodname='" + foodname + '\'' +
-                ", price=" + price + '}';
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

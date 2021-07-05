@@ -45,8 +45,6 @@ public class Repository {
                         foodModelList.add(foodModel);
                         interfaceoffoodlist.foodLists(foodModelList);
 
-                        foodModelList.add(foodModel);
-                        interfaceoffoodlist.foodLists(foodModelList);
 
 
                     }
