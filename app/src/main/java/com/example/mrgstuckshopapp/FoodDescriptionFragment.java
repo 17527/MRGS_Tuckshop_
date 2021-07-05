@@ -14,7 +14,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
-import com.example.mrgstuckshopapp.Model.FoodModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -79,13 +78,14 @@ public class FoodDescriptionFragment extends Fragment {
         //fetching the recent quantity from firestore and displaying it
         firebaseFirestore.collection("Food").document(foodid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onEvent(DocumentSnapshot value, FirebaseFirestoreException error) {
+            public void onEvent(DocumentSnapshot ds, FirebaseFirestoreException error) {
 
-                FoodModel foodModel = value.toObject(FoodModel.class);
-                quantity = foodModel.getQuantity();
-                quantityview.setText(String.valueOf(quantity));
+                quantity = Integer.parseInt(ds.get("quantity").toString());
+                            quantityview.setText(String.valueOf(quantity));
             }
         });
+
+
 
 // add button increases the quantity
         add.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +111,7 @@ public class FoodDescriptionFragment extends Fragment {
                         public void onComplete(Task<Void> task) {
 
                         }
+
                     });
 
                 }

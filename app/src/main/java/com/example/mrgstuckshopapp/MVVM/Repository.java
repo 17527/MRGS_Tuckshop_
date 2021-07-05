@@ -1,8 +1,6 @@
 package com.example.mrgstuckshopapp.MVVM;
 
 
-import android.util.Log;
-
 import com.example.mrgstuckshopapp.Model.FoodModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,13 +33,13 @@ public class Repository {
                     foodModelList.clear();
 
                     for (DocumentSnapshot ds: Objects.requireNonNull(task.getResult()).getDocuments()){
-                        Log.d("","");
                         FoodModel foodModel =new FoodModel();
-                        foodModel.setFoodid(ds.get("foodid").toString());
+                        foodModel.setFoodid(ds.getId());
                         foodModel.setDescription(ds.get("description").toString());
                         foodModel.setPrice(Integer.parseInt(ds.get("price").toString()));
                         foodModel.setImageURL(ds.get("imageURL").toString());
                         foodModel.setFoodname(ds.get("foodname").toString());
+                        foodModel.setQuantity(Integer.parseInt(ds.get("quantity").toString()));
                         foodModelList.add(foodModel);
                         interfaceoffoodlist.foodLists(foodModelList);
 
