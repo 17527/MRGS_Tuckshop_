@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mrgstuckshopapp.Adaptor.FoodAdaptor;
 import com.example.mrgstuckshopapp.MVVM.FoodViewModel;
 import com.example.mrgstuckshopapp.Model.FoodModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class Foodlistfragment extends Fragment implements FoodAdaptor.GetOneFood
     RecyclerView recyclerView;
     FoodViewModel viewModel;
     NavController navController;
+    FloatingActionButton shopCart;
 
     public Foodlistfragment() {
         // Required empty public constructor
@@ -46,6 +48,7 @@ public class Foodlistfragment extends Fragment implements FoodAdaptor.GetOneFood
         super.onViewCreated(view, savedInstanceState);
 
 
+        shopCart = view.findViewById(R.id.fab);
         firebaseFirestore = FirebaseFirestore.getInstance();
         recyclerView = view.findViewById(R.id.recViewAll);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -62,6 +65,13 @@ public class Foodlistfragment extends Fragment implements FoodAdaptor.GetOneFood
             }
         });
 
+        shopCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_foodlistfragment_to_cartFragment);
+            }
+        });
+
 
     }
 
@@ -73,16 +83,18 @@ public class Foodlistfragment extends Fragment implements FoodAdaptor.GetOneFood
         String description = foodModels.get(position).getDescription();
         String foodname = foodModels.get(position).getFoodname();
         int price = foodModels.get(position).getPrice();
+        int quantity = foodModels.get(position).getQuantity();
         String imageURL = foodModels.get(position).getImageURL();
         //this action is set so user is navigated to detail fragment when they click on an item
         FoodlistfragmentDirections.ActionFoodlistfragmentToFoodDescriptionFragment
-                action = FoodlistfragmentDirections.actionFoodlistfragmentToFoodDescriptionFragment();
+                action = FoodlistfragmentDirections.actionFoodlistfragmentToFoodDescriptionFragment(quantity);
 
         action.setFoodname(foodname);
         action.setDescription(description);
         action.setImageURL(imageURL);
         action.setPrice(price);
         action.setId(foodid);
+        action.setQuantity(quantity);
 
         navController.navigate(action);
     }

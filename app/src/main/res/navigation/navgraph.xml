@@ -47,6 +47,9 @@
             android:name="id"
             app:argType="string"
             android:defaultValue="null" />
+        <argument
+            android:name="quantity"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"

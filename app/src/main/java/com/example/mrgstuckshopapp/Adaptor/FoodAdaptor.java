@@ -53,6 +53,11 @@ public class FoodAdaptor extends RecyclerView.Adapter<FoodAdaptor.FoodListHolder
         this.foodModelList = FoodModelList;
     }
 
+    public interface GetOneFood{
+        void clickedFood(int position, List<FoodModel> foodModels);
+
+    }
+
     class FoodListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView foodname, description;
@@ -78,10 +83,5 @@ public class FoodAdaptor extends RecyclerView.Adapter<FoodAdaptor.FoodListHolder
         public void onClick(View v) {
             interfacegetFood.clickedFood(getAdapterPosition(), foodModelList);
         }
-    }
-
-    public interface GetOneFood{
-        void clickedFood(int position, List<FoodModel> foodModels);
-
     }
 }

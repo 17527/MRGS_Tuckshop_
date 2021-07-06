@@ -67,4 +67,17 @@ public class FoodModel {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        return "FoodModel{" +
+                "foodid='" + foodid + '\'' +
+                ", description='" + description + '\'' +
+                ", imageURL='" + imageURL + '\'' +
+                ", foodname='" + foodname + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
+
