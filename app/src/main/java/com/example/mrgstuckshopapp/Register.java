@@ -57,7 +57,7 @@ public class Register extends AppCompatActivity {
 
 
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), nav_drawer.class));
+            startActivity(new Intent(getApplicationContext(), HomePage.class));
             finish();
         }
 

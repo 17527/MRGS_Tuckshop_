@@ -1,10 +1,7 @@
 package com.example.mrgstuckshopapp;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -17,33 +14,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mrgstuckshopapp.Adaptor.FoodAdaptor;
 import com.example.mrgstuckshopapp.MVVM.FoodViewModel;
 import com.example.mrgstuckshopapp.Model.FoodModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
 
-public class Foodlistfragment extends Fragment implements FoodAdaptor.GetOneFood {
+public class HomeFragment extends Fragment {
 
     FirebaseFirestore firebaseFirestore;
     FoodAdaptor mAdaptor;
     RecyclerView recyclerView;
     FoodViewModel viewModel;
     NavController navController;
-    ImageButton shopCart;
+    FloatingActionButton shopCart;
 
-    public Foodlistfragment() {
+    public HomeFragment() {
         // Required empty public constructor
     }
 
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_foodlistfragment, container, false);
-    }
-
-    @Override
     public void onViewCreated(View view,Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -52,7 +41,7 @@ public class Foodlistfragment extends Fragment implements FoodAdaptor.GetOneFood
         firebaseFirestore = FirebaseFirestore.getInstance();
         recyclerView = view.findViewById(R.id.recViewAll);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdaptor = new FoodAdaptor(this);
+        mAdaptor = new FoodAdaptor((FoodAdaptor.GetOneFood) this);
         navController = Navigation.findNavController(view);
         viewModel = new ViewModelProvider(getActivity()).get(FoodViewModel.class);
         viewModel.getFoodList().observe(getViewLifecycleOwner(), new Observer<List<FoodModel>>() {
@@ -75,8 +64,8 @@ public class Foodlistfragment extends Fragment implements FoodAdaptor.GetOneFood
 
     }
 
-// helps identify which item the user has clicked on
-    @Override
+    // helps identify which item the user has clicked on
+
     public void clickedFood(int position, List<FoodModel> foodModels) {
 
         String foodid = foodModels.get(position).getFoodid();

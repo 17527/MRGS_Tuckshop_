@@ -185,12 +185,23 @@ public class FoodDescriptionFragment extends Fragment {
         });
     }
 
+    public String cartfoodid() {
+        firebaseFirestore.collection("Cart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(Task<QuerySnapshot> task) {
+
+
+                for (DocumentSnapshot ds : Objects.requireNonNull(task.getResult()).getDocuments()) {
+                    ds.get(cartfoodid());
+                }
+            }
+
+        });
+        return cartfoodid();
+    }
+
     private void AddtoCart() {
 
-        if (quantity == 0) {
-            navController.navigate(R.id.action_foodDescriptionFragment_to_foodlistfragment);
-            Toast.makeText(getContext(), "You did not order " + name, Toast.LENGTH_SHORT).show();
-        } else {
 
             FoodModel foodModel = new FoodModel();
             foodModel.setFoodid(foodid);
@@ -222,29 +233,45 @@ public class FoodDescriptionFragment extends Fragment {
 
                         }
                         if (flag) {
-                            firebaseFirestore.collection("Cart").document(id).update("quantity", quantity).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(Task<Void> task) {
-                                    Toast.makeText(getContext(), "Order Updated", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(Exception e) {
-                                    Log.d("AddtoCartException", "" + e);
-                                }
-                            });
+                            if (quantity > 0) {
+                                firebaseFirestore.collection("Cart").document(id).update("quantity", quantity).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(Task<Void> task) {
+                                        Toast.makeText(getContext(), "Order Updated", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(Exception e) {
+                                        Log.d("AddtoCartException", "" + e);
+                                    }
+                                });
+                            }
+                            if (quantity == 0) {
+                                firebaseFirestore.collection("Cart").document(id).delete();
+                                navController.navigate(R.id.action_foodDescriptionFragment_to_foodlistfragment);
+                                Toast.makeText(getContext(), "You did not order " + name, Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            firebaseFirestore.collection("Cart").add(foodModel).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Toast.makeText(getContext(), "Added to cart", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(Exception e) {
-                                    Log.d("AddtoCartException", "" + e);
-                                }
-                            });
+                            if(quantity>0)
+                            {
+                                firebaseFirestore.collection("Cart").add(foodModel).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        Toast.makeText(getContext(), "Added to cart", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(Exception e) {
+                                        Log.d("AddtoCartException", "" + e);
+                                    }
+                                });
+                            }
+                            if(quantity==0)
+                            {
+                                navController.navigate(R.id.action_foodDescriptionFragment_to_foodlistfragment);
+                                Toast.makeText(getContext(), "You did not order " + name, Toast.LENGTH_SHORT).show();
+                            }
+
                         }
                     }
 
@@ -253,7 +280,7 @@ public class FoodDescriptionFragment extends Fragment {
             });
 
 
-        }
+
 
 
     }

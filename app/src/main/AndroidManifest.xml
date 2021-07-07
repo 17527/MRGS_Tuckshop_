@@ -16,11 +16,10 @@
         <activity android:name=".ContactPage" />
         <activity android:name=".AboutPage" />
         <activity android:name=".MenuPage" />
-        <activity android:name=".PastOrder" />
         <activity android:name=".OrderPage" />
         <activity android:name=".verify" />
         <activity android:name=".Settings" />
-        <activity android:name=".nav_drawer" />
+        <activity android:name=".HomePage" />
         <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen">

@@ -16,6 +16,7 @@ import com.example.mrgstuckshopapp.Model.FoodModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -31,17 +32,18 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
     FirebaseFirestore firebaseFirestore;
     FoodAdaptor mAdaptor;
     double orderPrice=0;
+    FloatingActionButton confirmorder;
 
     public CartFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_cart, container, false);
+
     }
 
     @Override
@@ -56,12 +58,12 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
 //        foodModel.setFoodname("hello");
 //        foodModel.setQuantity(Integer.parseInt("1"));
 //        foodModels.add(foodModel);
+        confirmorder = view.findViewById(R.id.confirm_button);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         recyclerView = view.findViewById(R.id.recViewAll);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdaptor = new FoodAdaptor(this);
-
         getCartOrder();
 
 

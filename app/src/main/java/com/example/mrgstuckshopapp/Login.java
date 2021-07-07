@@ -139,7 +139,7 @@ public class Login extends AppCompatActivity {
                                 startActivity(new Intent(getApplicationContext(), verify.class));
                             }
                             else {
-                                startActivity(new Intent(getApplicationContext(), nav_drawer.class));
+                                startActivity(new Intent(getApplicationContext(), HomePage.class));
                             }
                         }
 

@@ -62,7 +62,7 @@
                     android:layout_height="40dp"
                     android:text="-"
                     android:textColor="#081A75"
-                    android:background="@drawable/round_btn"
+                    android:background="@drawable/yellow_btn"
                     android:id="@+id/downquantity"
                     />
 
@@ -84,7 +84,7 @@
                     android:text="+"
                     android:id="@+id/upquantity"
                     android:textColor="#081A75"
-                    android:background="@drawable/round_btn"/>
+                    android:background="@drawable/yellow_btn"/>
 
 
 
@@ -115,7 +115,7 @@
                 android:textColor="#081A75"
                 android:layout_below="@id/orderINFO"
                 android:id="@+id/addtocartorderdetail"
-                android:background="@drawable/round_btn"
+                android:background="@drawable/yellow_btn"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"/>

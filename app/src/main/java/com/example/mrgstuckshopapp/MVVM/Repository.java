@@ -52,6 +52,23 @@ public class Repository {
             }
         });
     }
+//    public void cartfoodid(){
+//        firebaseFirestore.collection("Cart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(Task<QuerySnapshot> task) {
+//
+//
+//                if (task.isSuccessful()) {
+//
+//                    for (DocumentSnapshot ds : Objects.requireNonNull(task.getResult()).getDocuments()) {
+//                        FoodModel foodModel = new FoodModel();
+//                        foodModel.setCartfoodid(ds.getId());
+//                    }
+//                }
+//            }
+//        });
+//    }
+
 
     public interface FoodList{
         void foodLists(List<FoodModel> foodModels);
