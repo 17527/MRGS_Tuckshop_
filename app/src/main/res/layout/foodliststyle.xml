@@ -34,7 +34,8 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:layout_toRightOf="@id/foodimage"
-                android:layout_marginLeft="15dp"/>
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/modern_sans_font"/>
 
 
             <TextView

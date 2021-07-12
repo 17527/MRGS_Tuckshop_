@@ -36,8 +36,9 @@
                 android:layout_centerHorizontal="true"
                 android:text="Food name"
                 android:textSize="20sp"
-                android:textColor="@color/black"
-                android:id="@+id/fooddetailname"/>
+                android:textColor="#081a75"
+                android:id="@+id/fooddetailname"
+                android:fontFamily="@font/modern_sans_font"/>
 
             <TextView
                 android:layout_width="match_parent"

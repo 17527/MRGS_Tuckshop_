@@ -1,12 +1,15 @@
 package com.example.mrgstuckshopapp;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +19,6 @@ import com.example.mrgstuckshopapp.Model.FoodModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -32,11 +34,10 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
     FirebaseFirestore firebaseFirestore;
     FoodAdaptor mAdaptor;
     double orderPrice=0;
-    FloatingActionButton confirmorder;
+    Button confirmorder;
+    AlertDialog.Builder confirm_popup;
+    LayoutInflater inflater;
 
-    public CartFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,12 +60,44 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
 //        foodModel.setQuantity(Integer.parseInt("1"));
 //        foodModels.add(foodModel);
         confirmorder = view.findViewById(R.id.confirm_button);
+        inflater = this.getLayoutInflater();
+
+        confirm_popup = new AlertDialog.Builder(getContext());
+
+        confirmorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view = inflater.inflate(R.layout.confirm_pop, null);
+
+                confirm_popup.setTitle("Order Now?")
+                        .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                try {
+                                    GMailSender sender = new GMailSender("mrgstuckshop@gmail.com", "12345678mrgs");
+
+                                    sender.sendMail("MRGS Tuckshop Order Confirmation",
+                                            "Hello",
+                                            "mrgstuckshop@gmail.com",
+                                            "mrgstuckshop@gmail.com");
+                                } catch (Exception e) {
+                                    Log.e("SendMail", e.getMessage(), e);
+                                }
+
+                            }
+                        }).setNegativeButton("Cancel", null)
+                        .setView(view)
+                        .create().show();
+
+            }
+        });
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         recyclerView = view.findViewById(R.id.recViewAll);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdaptor = new FoodAdaptor(this);
         getCartOrder();
+
 
 
 
