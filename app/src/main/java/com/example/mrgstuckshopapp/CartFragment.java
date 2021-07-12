@@ -117,4 +117,5 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
     public void clickedFood(int position, List<FoodModel> foodModels) {
 
     }
+
 }

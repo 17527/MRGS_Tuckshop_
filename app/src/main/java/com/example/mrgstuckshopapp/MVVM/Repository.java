@@ -14,6 +14,8 @@ import java.util.Objects;
 
 public class Repository {
 
+    //gets the instance from firebase and lists the information in variable from foodmodel and creats an array list
+
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     List<FoodModel> foodModelList = new ArrayList<>();
 
@@ -52,22 +54,6 @@ public class Repository {
             }
         });
     }
-//    public void cartfoodid(){
-//        firebaseFirestore.collection("Cart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public void onComplete(Task<QuerySnapshot> task) {
-//
-//
-//                if (task.isSuccessful()) {
-//
-//                    for (DocumentSnapshot ds : Objects.requireNonNull(task.getResult()).getDocuments()) {
-//                        FoodModel foodModel = new FoodModel();
-//                        foodModel.setCartfoodid(ds.getId());
-//                    }
-//                }
-//            }
-//        });
-//    }
 
 
     public interface FoodList{

@@ -56,7 +56,7 @@ public class FoodDescriptionFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_food_desrciption, container, false);
     }
 
-    //setting the values
+    //setting the values for each of the ids
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -80,7 +80,10 @@ public class FoodDescriptionFragment extends Fragment {
         fooddescription = FoodDescriptionFragmentArgs.fromBundle(getArguments()).getDescription();
         quantity = FoodDescriptionFragmentArgs.fromBundle(getArguments()).getQuantity();
 
+        //glide is an external dependency which helps load the image URL
         Glide.with(view.getContext()).load(imageURL).into(imageView);
+
+        //this sets the food name with the price and also sets the description
         foodname.setText(name + " $" + String.valueOf(price));
         description.setText(fooddescription);
 
@@ -112,7 +115,7 @@ public class FoodDescriptionFragment extends Fragment {
                     quantity++;
                     quantityview.setText(String.valueOf(quantity));
 
-                    //showing the price
+                    //showing the price of the increased quantity
                     totalPrice = quantity * price;
                     orderINFO.setText(String.valueOf("$ " + totalPrice));
 
@@ -148,6 +151,8 @@ public class FoodDescriptionFragment extends Fragment {
         });
 
 
+
+        //calls the AddtoCart void when add to cart button is clicked
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

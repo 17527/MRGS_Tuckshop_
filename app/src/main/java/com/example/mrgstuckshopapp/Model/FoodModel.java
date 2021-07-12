@@ -5,11 +5,13 @@ import com.google.firebase.firestore.DocumentId;
 
 public class FoodModel {
 
+
     @DocumentId
     private String foodid;
     private String description, imageURL, foodname;
     private int price, quantity;
 
+    //these are constructers for information variables
     public FoodModel() {
         this.foodid = foodid;
         this.description = description;
@@ -20,6 +22,7 @@ public class FoodModel {
     }
 
 
+    //setters and getters for the information variables
     public String getFoodid() {
         return foodid;
     }
@@ -68,6 +71,8 @@ public class FoodModel {
         this.quantity = quantity;
     }
 
+
+    //string variables for the information variables for food
     @Override
     public String toString() {
         return "FoodModel{" +

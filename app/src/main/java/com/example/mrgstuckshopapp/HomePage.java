@@ -24,6 +24,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // gets full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
@@ -33,9 +34,11 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
+        //setting the custom toolbar as the toolbar for the app
+
         setSupportActionBar(toolbar);
 
-
+        //gets the navigation drawer and displays it when clicked on the button
         navigationView.bringToFront();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -47,7 +50,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
 
     }
-
+    // if back button is pressed while navigation drawer is open, then it closes it
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -57,6 +60,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         }
     }
 
+    //this sets the navigation place for each of the buttons in naviagtion bar and once other activity is opened, nav drawer closes
     @Override
     public boolean onNavigationItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {

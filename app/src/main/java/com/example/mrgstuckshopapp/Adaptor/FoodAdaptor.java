@@ -17,21 +17,24 @@ import java.util.List;
 
 public class FoodAdaptor extends RecyclerView.Adapter<FoodAdaptor.FoodListHolder>{
 
-
+// gets the Food Model and makes it into a list
     List<FoodModel> foodModelList;
 
+    //creates the interface
     GetOneFood interfacegetFood;
-
     public FoodAdaptor(GetOneFood interfacegetFood) {
         this.interfacegetFood = interfacegetFood;
     }
 
+    //inflates the foodliststyle fragment on ViewHolder, Foodlistholder
     @Override
     public FoodListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.foodliststyle, parent, false);
         return new FoodListHolder(view);
     }
 
+
+    //sets the name, description and imageURL in the foodlist holder
     @Override
     public void onBindViewHolder(FoodAdaptor.FoodListHolder holder, int position) {
 
@@ -42,6 +45,7 @@ public class FoodAdaptor extends RecyclerView.Adapter<FoodAdaptor.FoodListHolder
 
     }
 
+    //counts the item
     @Override
     public int getItemCount() {
         return foodModelList.size();
@@ -53,11 +57,13 @@ public class FoodAdaptor extends RecyclerView.Adapter<FoodAdaptor.FoodListHolder
         this.foodModelList = FoodModelList;
     }
 
+    //interface method for each of the food when it is clicked
     public interface GetOneFood{
         void clickedFood(int position, List<FoodModel> foodModels);
 
     }
 
+    //foodlistholder class helps show these items into recycler view
     class FoodListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView foodname, description;
@@ -78,7 +84,6 @@ public class FoodAdaptor extends RecyclerView.Adapter<FoodAdaptor.FoodListHolder
 
 
         // the method that is implemented when user clicks on food
-
         @Override
         public void onClick(View v) {
             interfacegetFood.clickedFood(getAdapterPosition(), foodModelList);
