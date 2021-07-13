@@ -1,8 +1,5 @@
 package com.example.mrgstuckshopapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,18 +8,20 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class verify extends AppCompatActivity {
+public class Verify extends AppCompatActivity {
     Button ResendCode;
     String userID;
     FirebaseAuth fAuth;
     TextView Verify;
-    private static final String TAG = "verify";
+    private static final String TAG = "Verify";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

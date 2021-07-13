@@ -11,14 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MRGSTuckshopApp">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".home" />
         <activity android:name=".ContactPage" />
         <activity android:name=".AboutPage" />
-        <activity android:name=".MenuPage" />
         <activity android:name=".OrderPage" />
-        <activity android:name=".verify" />
-        <activity android:name=".Settings" />
+        <activity android:name=".Verify" />
         <activity android:name=".HomePage" />
         <activity android:name=".Register" />
         <activity android:name=".Login" />

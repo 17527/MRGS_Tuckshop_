@@ -36,7 +36,8 @@
                 android:layout_height="wrap_content"
                 android:background="#00FFFFFF"
                 android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"/>
+                android:theme="?attr/actionBarTheme"
+                app:title="Order Now"/>
 
             <ImageView
                 android:id="@+id/imageView2"

@@ -1,9 +1,5 @@
 package com.example.mrgstuckshopapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +12,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -136,7 +136,7 @@ public class Login extends AppCompatActivity {
                             userID = fAuth.getCurrentUser().getUid();
                             final FirebaseUser user = fAuth.getCurrentUser();
                             if (!user.isEmailVerified()) {
-                                startActivity(new Intent(getApplicationContext(), verify.class));
+                                startActivity(new Intent(getApplicationContext(), Verify.class));
                             }
                             else {
                                 startActivity(new Intent(getApplicationContext(), HomePage.class));

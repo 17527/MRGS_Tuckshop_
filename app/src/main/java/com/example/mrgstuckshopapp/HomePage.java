@@ -70,10 +70,6 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 Intent intent = new Intent(HomePage.this, OrderPage.class);
                 startActivity(intent);
                 break;
-            case R.id.nav_menu:
-                intent = new Intent(HomePage.this, MenuPage.class);
-                startActivity(intent);
-                break;
             case R.id.nav_aboutus:
                 intent = new Intent(HomePage.this, AboutPage.class);
                 startActivity(intent);

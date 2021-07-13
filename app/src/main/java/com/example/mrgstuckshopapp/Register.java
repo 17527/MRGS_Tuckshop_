@@ -122,7 +122,7 @@ public class Register extends AppCompatActivity {
                                 }
                             });
                             Toast.makeText(Register.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), verify.class));
+                            startActivity(new Intent(getApplicationContext(), Verify.class));
                             finish();
                         }
 

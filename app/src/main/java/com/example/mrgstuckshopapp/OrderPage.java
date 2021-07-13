@@ -68,10 +68,6 @@ public class OrderPage extends AppCompatActivity implements NavigationView.OnNav
                 break;
             case R.id.nav_ordernow:
                 break;
-            case R.id.nav_menu:
-                intent = new Intent(OrderPage.this, MenuPage.class);
-                startActivity(intent);
-                break;
             case R.id.nav_aboutus:
                 intent = new Intent(OrderPage.this, AboutPage.class);
                 startActivity(intent);

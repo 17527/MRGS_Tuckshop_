@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,19 +16,21 @@
         android:id="@+id/nav_view"
         app:headerLayout="@layout/header"
         app:menu="@menu/main_menu"
+
         android:layout_gravity="start" />
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/appbackground">
+        android:background="@drawable/appbackground"
+        android:fillViewport="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-
+       <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".HomePage">
+            tools:context=".HomePage"
+           >
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -54,6 +55,137 @@
                 android:id="@+id/imageView2"
                 android:src="@drawable/menu_button"
                 />
+           <LinearLayout
+               android:id="@+id/classics"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               android:layout_marginTop="90dp">
+
+               <TextView
+                   android:id="@+id/classic_title"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:fontFamily="@font/modern_sans_font"
+                   android:text="The Classics"
+                   android:textAlignment="center"
+                   android:textColor="#8F0B0B"
+                   android:textSize="24sp" />
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_marginTop="15dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:id="@+id/classic_menu"
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:fontFamily="@font/modern_sans_font"
+                       android:lineSpacingExtra="10dp"
+                       android:lines="7"
+                       android:paddingLeft="20dp"
+                       android:text=" Hashbrown \n Garlic Bread \n Chicken Tendor
+\n Hot Dog \n Wedges \n Cheese Burger \n Ramen Noodles"
+                       android:textColor="#081a75"
+                       android:textSize="20dp">
+
+                   </TextView>
+
+                   <TextView
+                       android:id="@+id/classic_price"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:fontFamily="@font/modern_sans_font"
+                       android:gravity="right"
+                       android:lineSpacingExtra="6dp"
+                       android:lines="7"
+                       android:paddingRight="30dp"
+                       android:text=" $1 \n $3 \n $2
+\n $5 \n $4 \n $4 \n $3 "
+                       android:textColor="#081a75"
+                       android:textSize="20dp" />
+               </LinearLayout>
+
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:id="@+id/pastanrice"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/classics"
+               app:layout_constraintVertical_bias="0.110000014">
+
+               <TextView
+                   android:id="@+id/pastanricetitle"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:fontFamily="@font/modern_sans_font"
+                   android:text="Pasta &amp; Rice"
+                   android:textAlignment="center"
+                   android:textColor="#8F0B0B"
+                   android:textSize="24sp" />
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_marginTop="15dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:id="@+id/pastanricemenu"
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:fontFamily="@font/modern_sans_font"
+                       android:lineSpacingExtra="10dp"
+                       android:lines="3"
+                       android:paddingLeft="20dp"
+                       android:text=" Teriyaki Chicken Rice \n Butter Chicken Rice \n Mac N Cheese"
+                       android:textColor="#081a75"
+                       android:textSize="20dp">
+
+                   </TextView>
+
+                   <TextView
+                       android:id="@+id/pastanriceprice"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:fontFamily="@font/modern_sans_font"
+                       android:gravity="right"
+                       android:lineSpacingExtra="7dp"
+                       android:lines="3"
+                       android:paddingRight="30dp"
+                       android:text=" $5 \n $5 \n $4 "
+                       android:textColor="#081a75"
+                       android:textSize="20dp" />
+               </LinearLayout>
+
+
+
+           </LinearLayout>
+
+           <Button
+               android:id="@+id/ordernowbtn"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@drawable/yellow_btn"
+               android:text="Order now"
+               android:textColor="#081a75"
+               android:textSize="18sp"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/pastanrice"
+               app:layout_constraintVertical_bias="0.3" />
 
 
 
