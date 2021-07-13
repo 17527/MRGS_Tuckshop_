@@ -3,7 +3,9 @@ package com.example.mrgstuckshopapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -20,6 +22,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    Button ordernow;
 
 
     @Override
@@ -33,6 +36,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+        ordernow = findViewById(R.id.ordernowbtn);
 
         //setting the custom toolbar as the toolbar for the app
 
@@ -48,8 +52,22 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
 
+        ordernow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, OrderPage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
+
 
     }
+
+
     // if back button is pressed while navigation drawer is open, then it closes it
     @Override
     public void onBackPressed() {
@@ -59,6 +77,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             super.onBackPressed();
         }
     }
+
+
 
     //this sets the navigation place for each of the buttons in naviagtion bar and once other activity is opened, nav drawer closes
     @Override
@@ -86,6 +106,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 break;
 
         }
+
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;

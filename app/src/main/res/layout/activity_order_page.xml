@@ -37,7 +37,8 @@
                 android:background="#00FFFFFF"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
-                app:title="Order Now"/>
+                app:title="Order Now"
+                app:titleTextColor="#081a75"/>
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -47,6 +48,7 @@
                 android:layout_marginLeft="8dp"
                 android:src="@drawable/menu_button"
                 app:layout_constraintBottom_toTopOf="@+id/fragment" />
+
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragment"

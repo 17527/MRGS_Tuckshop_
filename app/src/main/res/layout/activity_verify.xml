@@ -4,7 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Verify">
+    tools:context=".Verify"
+    android:background="@drawable/appbackground">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:src="@drawable/mrgs_logo_l"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.120000005">
+
+    </ImageView>
+
 
     <TextView
         android:id="@+id/verifymsg"
@@ -15,43 +30,76 @@
         android:textAlignment="center"
         android:textColor="#d10202"
         android:textSize="25dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.17" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.060000002" />
+
+    <TextView
+        android:id="@+id/verifymsg2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/modern_sans_font"
+        android:lines="2"
+        android:text="To use the app, \n please Verify your Email!"
+        android:textAlignment="center"
+        android:textColor="#d10202"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/verifymsg"
+        app:layout_constraintVertical_bias="0.04000002" />
 
     <Button
         android:id="@+id/btn_verify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/yellow_btn"
-        android:text="Verify now"
+        android:text="Resend Email"
         android:textColor="#081A75"
-        android:textSize="20dp"
-        android:visibility="invisible"
+        android:textSize="15dp"
+        android:visibility="visible"
         app:iconTint="#BB8800"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.308" />
+        app:layout_constraintTop_toBottomOf="@+id/verifymsg2"
+        app:layout_constraintVertical_bias="0.060000002" />
+
+    <TextView
+        android:id="@+id/verifynote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/modern_sans_font"
+        android:lines="2"
+        android:text="Note: Once the email has been verified, \nplease Re-Login"
+        android:textColor="#d10202"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_verify"
+        app:layout_constraintVertical_bias="0.19999999" />
+
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/yellow_btn"
+        android:onClick="logout1"
         android:text="Logout"
         android:textColor="#081A75"
-        android:textSize="20dp"
+        android:textSize="15dp"
         app:iconTint="#BB8800"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="logout1"/>
+        app:layout_constraintTop_toBottomOf="@+id/verifynote"
+        app:layout_constraintVertical_bias="0.18" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

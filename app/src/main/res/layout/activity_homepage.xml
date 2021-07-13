@@ -16,7 +16,6 @@
         android:id="@+id/nav_view"
         app:headerLayout="@layout/header"
         app:menu="@menu/main_menu"
-
         android:layout_gravity="start" />
 
 
@@ -39,6 +38,8 @@
                 android:background="#00FFFFFF"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
+                app:title="MRGS Tuckshop Menu"
+                app:titleTextColor="#081a75"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

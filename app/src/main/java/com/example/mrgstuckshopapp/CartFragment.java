@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
@@ -38,6 +38,7 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
     Button confirmorder;
     AlertDialog.Builder confirm_popup, placed_order_popup;
     LayoutInflater inflater;
+    TextView totalcartprice;
 
     public CartFragment() {
         // Required empty public constructor
@@ -49,6 +50,10 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_cart, container, false);
 
+    }
+
+    public void setTotalcartprice(TextView totalprice) {
+        this.totalcartprice = totalprice;
     }
 
     @Override
@@ -64,12 +69,15 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
 //        foodModel.setQuantity(Integer.parseInt("1"));
 //        foodModels.add(foodModel);
         confirmorder = view.findViewById(R.id.confirm_button);
+        totalcartprice = view.findViewById(R.id.totalcartprice);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         recyclerView = view.findViewById(R.id.recViewAll);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdaptor = new FoodAdaptor(this);
         getCartOrder();
+
+
 
         confirm_popup = new AlertDialog.Builder(getContext());
         placed_order_popup = new AlertDialog.Builder(getContext());
@@ -134,7 +142,7 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
                         foodModel.setFoodid(ds.getId());
                         double totalPrice = Integer.parseInt(ds.get("price").toString()) * Integer.parseInt(ds.get("quantity").toString());
                         orderPrice = orderPrice + totalPrice;
-                        foodModel.setDescription("Quantity : "+Integer.parseInt(ds.get("quantity").toString()) + " Price : "+totalPrice +"0");
+                        foodModel.setDescription("Quantity : "+Integer.parseInt(ds.get("quantity").toString()) + "      Price : $"+totalPrice +"0");
                         foodModel.setImageURL(ds.get("imageURL").toString());
                         foodModel.setFoodname(ds.get("foodname").toString());
                         foodModels.add(foodModel);
@@ -144,7 +152,7 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
                     }
                     mAdaptor.setFoodModelList(foodModels);
                     recyclerView.setAdapter(mAdaptor);
-                    Toast.makeText(getActivity(), ""+orderPrice, Toast.LENGTH_SHORT).show();
+                    totalcartprice.setText("Total Price: $"+orderPrice+ "0");
                 }
 
 
