@@ -8,13 +8,15 @@
     tools:context=".FoodDescriptionFragment">
 
 
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="8dp"
         app:cardCornerRadius="6dp"
         android:layout_centerInParent="true"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:id="@+id/cardviewdescription">
 
         <RelativeLayout
             android:layout_width="match_parent"

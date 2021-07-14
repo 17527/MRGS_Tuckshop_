@@ -1,6 +1,5 @@
 package com.example.mrgstuckshopapp;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -23,9 +22,10 @@ public class ContactPage extends AppCompatActivity implements NavigationView.OnN
     Toolbar toolbar;
 
 
-    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // gets full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
@@ -35,9 +35,11 @@ public class ContactPage extends AppCompatActivity implements NavigationView.OnN
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
+        //setting the custom toolbar as the toolbar for the app
+
         setSupportActionBar(toolbar);
 
-
+//gets the navigation drawer and displays it when clicked on the button
         navigationView.bringToFront();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -49,7 +51,7 @@ public class ContactPage extends AppCompatActivity implements NavigationView.OnN
 
 
     }
-
+    // if back button is pressed while navigation drawer is open, then it closes it
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -59,6 +61,7 @@ public class ContactPage extends AppCompatActivity implements NavigationView.OnN
         }
     }
 
+    //this sets the navigation place for each of the buttons in naviagtion bar and once other activity is opened, nav drawer closes
     @Override
     public boolean onNavigationItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
@@ -70,8 +73,8 @@ public class ContactPage extends AppCompatActivity implements NavigationView.OnN
                 intent = new Intent(ContactPage.this, OrderPage.class);
                 startActivity(intent);
                 break;
-            case R.id.nav_aboutus:
-                intent = new Intent(ContactPage.this, AboutPage.class);
+            case R.id.nav_help:
+                intent = new Intent(ContactPage.this, Help.class);
                 startActivity(intent);
                 break;
             case R.id.nav_contact:

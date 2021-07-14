@@ -47,7 +47,7 @@ public class Foodlistfragment extends Fragment implements FoodAdaptor.GetOneFood
     public void onViewCreated(View view,Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
+//setting the ids and the view from the data fetched from firebase through foodmodel and foodviewmodel
         shopCart = view.findViewById(R.id.fab);
         firebaseFirestore = FirebaseFirestore.getInstance();
         recyclerView = view.findViewById(R.id.recViewAll);
@@ -55,6 +55,8 @@ public class Foodlistfragment extends Fragment implements FoodAdaptor.GetOneFood
         mAdaptor = new FoodAdaptor(this);
         navController = Navigation.findNavController(view);
         viewModel = new ViewModelProvider(getActivity()).get(FoodViewModel.class);
+
+        //displays the data throguh foodmodel and foodviewmodel
         viewModel.getFoodList().observe(getViewLifecycleOwner(), new Observer<List<FoodModel>>() {
             @Override
             public void onChanged(List<FoodModel> foodModels) {
@@ -65,6 +67,7 @@ public class Foodlistfragment extends Fragment implements FoodAdaptor.GetOneFood
             }
         });
 
+        //when clicked on shop cart, cart fragment opens up
         shopCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,10 +78,12 @@ public class Foodlistfragment extends Fragment implements FoodAdaptor.GetOneFood
 
     }
 
-// helps identify which item the user has clicked on
+// process of items being clicked
     @Override
     public void clickedFood(int position, List<FoodModel> foodModels) {
 
+
+        //gets the variables of clicked items through foodmodel
         String foodid = foodModels.get(position).getFoodid();
         String description = foodModels.get(position).getDescription();
         String foodname = foodModels.get(position).getFoodname();
@@ -89,6 +94,7 @@ public class Foodlistfragment extends Fragment implements FoodAdaptor.GetOneFood
         FoodlistfragmentDirections.ActionFoodlistfragmentToFoodDescriptionFragment
                 action = FoodlistfragmentDirections.actionFoodlistfragmentToFoodDescriptionFragment(quantity);
 
+        //action is the new fooddescription fragment, thus it shows the fetched data in that
         action.setFoodname(foodname);
         action.setDescription(description);
         action.setImageURL(imageURL);

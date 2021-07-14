@@ -32,6 +32,8 @@ import java.util.Objects;
 
 public class FoodDescriptionFragment extends Fragment {
 
+    //setting  the variables
+
     NavController navController;
     int quantity = 0;
     FirebaseFirestore firebaseFirestore;
@@ -49,6 +51,8 @@ public class FoodDescriptionFragment extends Fragment {
         // Required empty public constructor
     }
 
+
+    //sets the layout inflator the fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,6 +65,7 @@ public class FoodDescriptionFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         imageView = view.findViewById(R.id.fooddetailimage);
         foodname = view.findViewById(R.id.fooddetailname);
         description = view.findViewById(R.id.fooddetaildetail);
@@ -71,6 +76,7 @@ public class FoodDescriptionFragment extends Fragment {
         navController = Navigation.findNavController(view);
         order = view.findViewById(R.id.addtocartorderdetail);
         orderINFO = view.findViewById(R.id.orderINFO);
+
 
 
         name = FoodDescriptionFragmentArgs.fromBundle(getArguments()).getFoodname();
@@ -106,12 +112,14 @@ public class FoodDescriptionFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                //if quantity is 10, prevents user to get higher quantity and displays maximum quantity reached
                 if (quantity == 10) {
-                    Toast.makeText(getContext(), "Nothing in Cart", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Maximum Quantity Reached", Toast.LENGTH_SHORT).show();
                     quantityview.setText(String.valueOf(quantity));
 
                 } else {
 
+                    //until quantity is 10, the quantity will increase
                     quantity++;
                     quantityview.setText(String.valueOf(quantity));
 
@@ -130,12 +138,14 @@ public class FoodDescriptionFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                //if quantity is 0, prevents user to get into negative numbers and displays nothing in cart
                 if (quantity == 0) {
                     Toast.makeText(getContext(), "Nothing in Cart", Toast.LENGTH_SHORT).show();
                     quantityview.setText(String.valueOf(quantity));
 
                 } else {
 
+                    //until quantity is 0, the quantity will decrease
                     quantity--;
                     quantityview.setText(String.valueOf(quantity));
 
@@ -161,6 +171,7 @@ public class FoodDescriptionFragment extends Fragment {
         });
     }
 
+    //fetches what is currentnly in the cart
     void fetchCurrentCartQuantity() {
         firebaseFirestore.collection("Cart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -190,24 +201,11 @@ public class FoodDescriptionFragment extends Fragment {
         });
     }
 
-    public String cartfoodid() {
-        firebaseFirestore.collection("Cart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(Task<QuerySnapshot> task) {
 
-
-                for (DocumentSnapshot ds : Objects.requireNonNull(task.getResult()).getDocuments()) {
-                    ds.get(cartfoodid());
-                }
-            }
-
-        });
-        return cartfoodid();
-    }
-
+//the process when they click add to cart for each of the item
     private void AddtoCart() {
 
-
+//gets the variable data through foodmodel
             FoodModel foodModel = new FoodModel();
             foodModel.setFoodid(foodid);
             foodModel.setDescription(fooddescription);
@@ -217,19 +215,22 @@ public class FoodDescriptionFragment extends Fragment {
             foodModel.setPrice(price);
 
 
-// Check food item is present in cart or not
-// If food item is already in cart then just update the quantity
+
+
             firebaseFirestore.collection("Cart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(Task<QuerySnapshot> task) {
 
 
+                    // Check food item is present in cart collection in firestore or not
                     if (task.isSuccessful()) {
                         boolean flag = false;
                         String id = "";
 
+                        //document snapshot gets the data (documents) from firebase
                         for (DocumentSnapshot ds : Objects.requireNonNull(task.getResult()).getDocuments()) {
 
+                            //if the document contains the foodname, then it gets its id
                             if (ds.get("foodname").toString().contains(name)) {
                                 flag = true;
                                 id = ds.getId();
@@ -237,6 +238,8 @@ public class FoodDescriptionFragment extends Fragment {
                             }
 
                         }
+                        //updates just the quantity if the item is there, if the item is there and 0 is chosen quanitty,
+                        //then it removes that item
                         if (flag) {
                             if (quantity > 0) {
                                 firebaseFirestore.collection("Cart").document(id).update("quantity", quantity).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -256,6 +259,10 @@ public class FoodDescriptionFragment extends Fragment {
                                 navController.navigate(R.id.action_foodDescriptionFragment_to_foodlistfragment);
                                 Toast.makeText(getContext(), "You did not order " + name, Toast.LENGTH_SHORT).show();
                             }
+
+
+                            //if the item is not there, then it creates a new document in Cart collection in firestore and adds the data through
+                            //foodmodel data varialbes
                         } else {
                             if(quantity>0)
                             {
@@ -270,11 +277,6 @@ public class FoodDescriptionFragment extends Fragment {
                                         Log.d("AddtoCartException", "" + e);
                                     }
                                 });
-                            }
-                            if(quantity==0)
-                            {
-                                navController.navigate(R.id.action_foodDescriptionFragment_to_foodlistfragment);
-                                Toast.makeText(getContext(), "You did not order " + name, Toast.LENGTH_SHORT).show();
                             }
 
                         }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,7 @@ import com.example.mrgstuckshopapp.Model.FoodModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -39,6 +41,8 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
     AlertDialog.Builder confirm_popup, placed_order_popup;
     LayoutInflater inflater;
     TextView totalcartprice;
+    FirebaseAuth fAuth;
+    String useremail;
 
     public CartFragment() {
         // Required empty public constructor
@@ -59,37 +63,37 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        List<FoodModel> foodModels = new ArrayList<>();
-//        FoodModel foodModel =new FoodModel();
-//        foodModel.setFoodid("1");
-//        foodModel.setDescription("Hello");
-//        foodModel.setPrice(Integer.parseInt("1"));
-//        foodModel.setImageURL("https://raw.githubusercontent.com/17527/MRGS_Tuckshop_/master/app/src/main/res/drawable-v24/wedges.jpg");
-//        foodModel.setFoodname("hello");
-//        foodModel.setQuantity(Integer.parseInt("1"));
-//        foodModels.add(foodModel);
+
+        //setting ids and the layout
         confirmorder = view.findViewById(R.id.confirm_button);
         totalcartprice = view.findViewById(R.id.totalcartprice);
+        fAuth = FirebaseAuth.getInstance();
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         recyclerView = view.findViewById(R.id.recViewAll);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdaptor = new FoodAdaptor(this);
+
+        //calling the cartorder process which is done below
         getCartOrder();
 
 
 
-        confirm_popup = new AlertDialog.Builder(getContext());
-        placed_order_popup = new AlertDialog.Builder(getContext());
+
+
+
 
         confirmorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View view = inflater.inflate(R.layout.confirm_pop, null);
+                new AlertDialog.Builder(getContext())
 
-                confirm_popup.setTitle("Order Now?")
+                        .setTitle("Confirm Order?")
                         //confirm button will delete the files from cart and show how they can collect order
                         //then they are navigated back to order page
+                        .setMessage("Note: If Order is not picked up,\n" +
+                                "your school account will be charged with\n" +
+                                "the amount due plus the 25% extra penalty")
                         .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -103,27 +107,65 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
                                             }
                                         }
                                     }
-                                });
-                                //to display how to collect the order
 
-                                View view1 = inflater.inflate(R.layout.placed_order_pop, null);
-                                placed_order_popup.setTitle("Order Placed Successfully")
-                                        //once they click okay, they go back to order page
-                                        .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                startActivity(new Intent(getContext(), OrderPage.class));
-                                            }
-                                        });
-                                }
+                                });
+
+                                useremail = String.valueOf(fAuth.getCurrentUser().getEmail());
+                                Toast.makeText(getContext(), "Your Order has been placed for " + useremail, Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getActivity(), HomePage.class);
+                                startActivity(intent);
+
+                            }
                         }).setNegativeButton("Cancel", null)
-                        .setView(view)
-                        .create().show();
+                        .show();
 
             }
         });
 
     }
+
+//        confirmorder.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                View view = inflater.inflate(R.layout.confirm_pop, null);
+//
+//                confirm_popup.setTitle("Order Now?")
+//                        //confirm button will delete the files from cart and show how they can collect order
+//                        //then they are navigated back to order page
+//                        .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                //To delete all documents from Cart
+//                                firebaseFirestore.collection("Cart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                                    @Override
+//                                    public void onComplete(Task<QuerySnapshot> task) {
+//                                        if (task.isSuccessful()) {
+//                                            for (DocumentSnapshot ds : Objects.requireNonNull(task.getResult()).getDocuments()) {
+//                                                ds.getReference().delete();
+//                                            }
+//                                        }
+//                                    }
+//                                });
+//                                //to display how to collect the order
+//
+//                                View view1 = inflater.inflate(R.layout.placed_order_pop, null);
+//                                placed_order_popup.setTitle("Order Placed Successfully")
+//                                        //once they click okay, they go back to order page
+//                                        .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                startActivity(new Intent(getContext(), OrderPage.class));
+//                                            }
+//                                        });
+//                                }
+//                        }).setNegativeButton("Cancel", null)
+//                        .setView(view)
+//                        .create().show();
+//
+//            }
+//        });
+//
+//    }
 
    void getCartOrder()
     {

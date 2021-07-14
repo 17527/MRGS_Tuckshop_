@@ -14,7 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +25,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Register extends AppCompatActivity {
+
+    //settings the variables
     EditText rEmail, rStudID, rPassword;
     Button btnRegister;
     ImageView rLogo;
@@ -39,10 +40,14 @@ public class Register extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //fullscreen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_register);
 
 
+
+        //setting the ids with variables
         rEmail = findViewById(R.id.r_email);
         rStudID = findViewById(R.id.stud_id);
         rPassword = findViewById(R.id.r_password);
@@ -54,13 +59,13 @@ public class Register extends AppCompatActivity {
 
 
 
-
-
+        //if the user is already signed in then go straight to Home page
         if(fAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(), HomePage.class));
             finish();
         }
 
+        //register button
         btnRegister.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +76,7 @@ public class Register extends AppCompatActivity {
 
 
 
-                //the conditions
+                //the conditions for fields
 
                 if(TextUtils.isEmpty(stud_id)){
                     rStudID.setError("Student ID is required");
@@ -100,13 +105,13 @@ public class Register extends AppCompatActivity {
 
                 rProgressBar.setVisibility(View.VISIBLE);
 
-                //registering the user into firebase
-
+                //registering the user into firebase if the above conditions are met
                 fAuth.createUserWithEmailAndPassword(email,password) .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete(Task<AuthResult> task) {
                         if(task.isSuccessful()){
 
+                            //sending verification email and redirecting them to verify page. if email not sent, error shows
                             FirebaseUser user = fAuth.getCurrentUser();
                             user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -116,7 +121,7 @@ public class Register extends AppCompatActivity {
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
-                                public void onFailure(@NonNull Exception e) {
+                                public void onFailure( Exception e) {
                                     Log.d(TAG, "onFailure: Email not sent" + e.getMessage());
 
                                 }
@@ -137,6 +142,7 @@ public class Register extends AppCompatActivity {
             }
         });
 
+        //when the user clicks on 'Log In' button they are redirected to login activity
         rCreate.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

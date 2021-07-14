@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class Repository {
 
-    //gets the instance from firebase and lists the information in variable from foodmodel and creats an array list
+    //gets the instance from firebase and lists the information in variable from foodmodel and creates an array list
 
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     List<FoodModel> foodModelList = new ArrayList<>();
@@ -25,6 +25,7 @@ public class Repository {
         this.interfaceoffoodlist = interfaceoffoodlist;
     }
 
+    //creates a process of how the data will be fetched from firestorew
     public void getFood(){
         firebaseFirestore.collection("Food").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override

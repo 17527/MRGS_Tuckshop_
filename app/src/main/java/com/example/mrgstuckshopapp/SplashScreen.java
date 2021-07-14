@@ -24,6 +24,7 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Fullscreen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splash_screen);
 
@@ -35,9 +36,12 @@ public class SplashScreen extends AppCompatActivity {
         image = findViewById(R.id.imageView);
         logo = findViewById(R.id.tuckshop_intro);
 
+        //setting the animation to variables
         image.setAnimation(topAnim);
         logo.setAnimation(bottomAnim);
 
+
+        //sending them to register class, once the splash screen is completed
         new Handler().postDelayed (new Runnable() {
             @Override
             public void run() {

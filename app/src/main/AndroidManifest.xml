@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MRGSTuckshopApp">
         <activity android:name=".ContactPage" />
-        <activity android:name=".AboutPage" />
+        <activity android:name=".Help" />
         <activity android:name=".OrderPage" />
         <activity android:name=".Verify" />
         <activity android:name=".HomePage" />

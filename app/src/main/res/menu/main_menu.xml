@@ -11,11 +11,6 @@
             android:title="Order Now" />
 
         <item
-            android:id="@+id/nav_aboutus"
-            android:icon="@drawable/about_icon"
-            android:title="About Us" />
-
-        <item
             android:id="@+id/nav_contact"
             android:icon="@drawable/contact_icon"
             android:title="Contact Us" />
@@ -23,6 +18,11 @@
             android:id="@+id/nav_logout"
             android:icon="@drawable/logout_icon"
             android:title="Logout" />
+
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/help_icon"
+            android:title="Help" />
 
 
     </group>
