@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+//setting the variables
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;

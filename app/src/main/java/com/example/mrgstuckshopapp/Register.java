@@ -119,10 +119,11 @@ public class Register extends AppCompatActivity {
                                     Toast.makeText(Register.this,"Verification link has been sent to the email", Toast.LENGTH_SHORT).show();
 
                                 }
+                                //if it fails the task, then it will show error why
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure( Exception e) {
-                                    Log.d(TAG, "onFailure: Email not sent" + e.getMessage());
+                                    Log.d(TAG, "onFailure: Email not sent " + e.getMessage());
 
                                 }
                             });
@@ -132,7 +133,7 @@ public class Register extends AppCompatActivity {
                         }
 
                         else{
-                            Toast.makeText(Register.this, "Error" + task.getException() .getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register.this, "Error " + task.getException() .getMessage(), Toast.LENGTH_SHORT).show();
                             rProgressBar.setVisibility(View.INVISIBLE);
                         }
                     }

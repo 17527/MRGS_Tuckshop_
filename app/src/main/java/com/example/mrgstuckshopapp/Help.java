@@ -17,7 +17,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Help extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+//settingthe variables
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;

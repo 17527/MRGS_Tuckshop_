@@ -292,22 +292,3 @@ public class FoodDescriptionFragment extends Fragment {
 
     }
 }
-// To delete all documents from Cart
-//firebaseFirestore.collection("Cart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//@Override
-//public void onComplete(Task<QuerySnapshot> task) {
-//
-//
-//        if (task.isSuccessful()){
-//
-//        for (DocumentSnapshot ds: Objects.requireNonNull(task.getResult()).getDocuments()){
-//        ds.getReference().delete();
-//
-//
-//
-//        }
-//        }
-//
-//
-//        }
-//        });

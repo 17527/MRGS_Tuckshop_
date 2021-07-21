@@ -163,7 +163,7 @@ public class Login extends AppCompatActivity {
 
                         //if the task is not succesful, it says invalid credentials and also displays the error then makes the spiining wheel disappear
                         else{
-                            Toast.makeText(Login.this, "Invalid Credentials" + task.getException() .getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Invalid Credentials " + task.getException() .getMessage(), Toast.LENGTH_SHORT).show();
                             lProgressBar.setVisibility(View.INVISIBLE);
                         }
 
@@ -173,7 +173,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        //if the user clicks on 'Create Accoiunt' button then it opens register activity
+        //if the user clicks on 'Create Account' button then it opens register activity
         lCreate.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), Register.class));
         });
@@ -181,45 +181,6 @@ public class Login extends AppCompatActivity {
 
 
 
-        //btnForgot.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View v) {
-        //
-        //        final EditText resetMail = new EditText(v.getContext());
-        //        final AlertDialog.Builder passwordResetDialoge = new AlertDialog.Builder(v.getContext());
-        //        passwordResetDialoge.setTitle("Reset Password?");
-        //        passwordResetDialoge.setMessage("Enter your email to Reset the Link");
-        //        passwordResetDialoge.setView(resetMail);
-        //
-        //        passwordResetDialoge.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-        //            @Override
-        //            public void onClick(DialogInterface dialog, int which) {
-        //                //this extracts the email and sends the email link
-        //
-        //                String mail = resetMail.getText() .toString();
-        //                fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
-        //                    @Override
-        //                    public void onSuccess(Void aVoid) {
-        //                        Toast.makeText(Login.this, "Reset Link Sent to your email", Toast.LENGTH_SHORT).show();
-        //                    }
-        //                }).addOnFailureListener(new OnFailureListener() {
-        //                    @Override
-        //                    public void onFailure(@NonNull Exception e) {
-        //                        Toast.makeText(Login.this, "Error! Reset Link is not Sent" + e.getMessage(), Toast.LENGTH_SHORT).show();
-        //
-        //                    }
-        //                });
-        //            }
-        //        });
-        //
-        //        passwordResetDialoge.setNegativeButton("No", new DialogInterface.OnClickListener() {
-        //            @Override
-        //            public void onClick(DialogInterface dialog, int which) {
-        //                //close the dialouge
-        //            }
-        //        });
-        //
-        //    }
-        //});
+
     }
 }

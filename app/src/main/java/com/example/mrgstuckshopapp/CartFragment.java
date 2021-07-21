@@ -33,6 +33,7 @@ import java.util.Objects;
 
 public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
 
+    //setting the variables
     RecyclerView recyclerView;
     FirebaseFirestore firebaseFirestore;
     FoodAdaptor mAdaptor;
@@ -81,7 +82,9 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
 
 
 
-
+//when clicked on confirm, it opens alert dialog where it shows a note about what happens, if
+// the food is not collected. if they click on confirm then it says 'order confirmed for (user's email)
+//if they cancel then the alert dialog closes
 
         confirmorder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,49 +127,11 @@ public class CartFragment extends Fragment  implements FoodAdaptor.GetOneFood {
 
     }
 
-//        confirmorder.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                View view = inflater.inflate(R.layout.confirm_pop, null);
-//
-//                confirm_popup.setTitle("Order Now?")
-//                        //confirm button will delete the files from cart and show how they can collect order
-//                        //then they are navigated back to order page
-//                        .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                //To delete all documents from Cart
-//                                firebaseFirestore.collection("Cart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                                    @Override
-//                                    public void onComplete(Task<QuerySnapshot> task) {
-//                                        if (task.isSuccessful()) {
-//                                            for (DocumentSnapshot ds : Objects.requireNonNull(task.getResult()).getDocuments()) {
-//                                                ds.getReference().delete();
-//                                            }
-//                                        }
-//                                    }
-//                                });
-//                                //to display how to collect the order
-//
-//                                View view1 = inflater.inflate(R.layout.placed_order_pop, null);
-//                                placed_order_popup.setTitle("Order Placed Successfully")
-//                                        //once they click okay, they go back to order page
-//                                        .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface dialog, int which) {
-//                                                startActivity(new Intent(getContext(), OrderPage.class));
-//                                            }
-//                                        });
-//                                }
-//                        }).setNegativeButton("Cancel", null)
-//                        .setView(view)
-//                        .create().show();
-//
-//            }
-//        });
-//
-//    }
 
+//method of getting orders from cart collection in firebase and displaying it
+//sets the foodmodel into an array list, then attempts to get the cart collection
+//if this task is successful, it gets all the variables required and hooks it with foodmodel variables
+//then using foodadaptor and recycler view, it displays this information
    void getCartOrder()
     {
 
