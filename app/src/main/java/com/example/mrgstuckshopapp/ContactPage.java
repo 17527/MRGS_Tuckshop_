@@ -47,7 +47,7 @@ public class ContactPage extends AppCompatActivity implements NavigationView.OnN
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_home);
+        navigationView.setCheckedItem(R.id.nav_contact);
 
 
     }

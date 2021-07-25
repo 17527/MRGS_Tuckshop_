@@ -46,7 +46,7 @@ public class Help extends AppCompatActivity implements NavigationView.OnNavigati
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_home);
+        navigationView.setCheckedItem(R.id.nav_help);
 
 
     }
